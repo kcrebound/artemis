@@ -15,7 +15,9 @@ List<Name> createPathName(List<Name> path, NamingScheme namingScheme,
 
   switch (namingScheme) {
     case NamingScheme.simple:
-      fullPath = [className ?? path.last];
+      fullPath = className == null
+          ? (path.length == 2 ? path : [path.last])
+          : [className];
       break;
     case NamingScheme.pathedWithFields:
       fullPath = [...path, if (fieldName != null) fieldName];
